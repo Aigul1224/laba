@@ -11,51 +11,34 @@ namespace лаб_работа_усач
 {
     public class SqlDataAdapter_
     {
-        string connectionString_;
-        string sql_;
-        Dictionary<string, string> sql = new Dictionary<string, string>() { { "Select_all", "SELECT * FROM Users" }, { "Select_FirstName", "SELECT * FROM USERS Where Name =" }, { "Update_User", "UPDATE USERS SET Teacher = where FirstName = " }, { "Delete_User", "DELETE FROM USERS where FirstName =  " } };
+        List<string> sql = new List<string>() {"SELECT * FROM T","SELECT * FROM T Where Name =" ,"UPDATE T SET Teacher = where FirstName = ", "DELETE FROM T where FirstName =  " , "insert into T Values (1,2,3,4)", "insert into T Values (1,2,3)" };
 
-        public SqlDataAdapter_(string connectionString, string sql)
-        {
-            connectionString_= connectionString;
-            sql_ = sql;
-        }
 
-        public void Adapter(int n)
+        public void Adapter(int i,string connectionString_)
         {
-            using(SqlConnection connection=new SqlConnection(connectionString_))
+            using(SqlConnection connection = new SqlConnection(connectionString_))
             {
-                
-                switch (n)
+                SqlDataAdapter adapter = new SqlDataAdapter(connectionString_, sql[i]);
+                DataSet ds = new DataSet();
+                adapter.Fill(ds);
+                foreach (DataTable dt in ds.Tables)
                 {
-                    case 1:
+                    foreach (DataColumn column in dt.Columns)
+                    {
+                        return;
+                    }
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        var cells = row.ItemArray;
+                        foreach (object cell in cells)
                         {
-                            SqlDataAdapter adapter = new SqlDataAdapter(connectionString_);
-                            DataSet ds = new DataSet();
-                            adapter.Fill(ds);
-                            foreach (DataTable dt in ds.Tables)
-                            {
-                                foreach (DataColumn column in dt.Columns)
-                                {
-                                    return;
-                                }
-                                foreach (DataRow row in dt.Rows)
-                                {
-                                    var cells = row.ItemArray;
-                                    foreach (object cell in cells)
-                                    {
-                                        return;
-                                    }
-
-                                }
-
-                                //Console.WriteLine($"{column.ColumnName}\t")
-                            }
-                            break;
+                            return;
                         }
 
+                    }
+
+                    //Console.WriteLine($"{column.ColumnName}\t")
                 }
-                
 
             }
         }

@@ -12,6 +12,8 @@ namespace лаб_работа_усач
 {
     public partial class Form1 : Form
     {
+        Conection conn = new Conection();
+        SqlDataAdapter_ adapter = new SqlDataAdapter_();
         public Form1()
         {
             InitializeComponent();
@@ -19,13 +21,17 @@ namespace лаб_работа_усач
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Conection conection = new Conection();
-            textBox1.Text = conection.Con("Server=(localdb)\\mssqllocaldb;Database=master;Trusted_Connection=True;");
+           
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            adapter.Adapter()
         }
     }
 }
