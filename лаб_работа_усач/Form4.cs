@@ -10,12 +10,12 @@ using System.Windows.Forms;
 
 namespace лаб_работа_усач
 {
-    public partial class Form2 : Form
+    public partial class Form4 : Form
     {
         Conection conn = new Conection();
         SqlDataAdapter_ adapter = new SqlDataAdapter_();
         SqlCommand_ sqlCommand = new SqlCommand_();
-        public Form2()
+        public Form4()
         {
             InitializeComponent();
         }
@@ -24,13 +24,14 @@ namespace лаб_работа_усач
         {
             try
             {
-                adapter.Adapter(conn.stringConnection, sqlCommand.sql[3] + $"('{textBox1.Text}', '{textBox4.Text}','{textBox3.Text}')");
-                MessageBox.Show($"{textBox1.Text} {textBox3.Text} {textBox4.Text}", "Успешно создан");
+                adapter.Adapter(conn.stringConnection, sqlCommand.sql[5] + $"('{textBox1.Text}', '{textBox4.Text}','{textBox2.Text}', '{textBox3.Text}')");
+                MessageBox.Show($"{textBox1.Text} {textBox4.Text} {textBox3.Text}", "Успешно создан");
             }
             catch
             {
-                MessageBox.Show("Неверно введеные данные");
+                MessageBox.Show($"{textBox1.Text} {textBox4.Text} {textBox3.Text}", "Успешно не удалось создать");
             }
+            
         }
     }
 }

@@ -6,40 +6,20 @@ using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace лаб_работа_усач
 {
     public class SqlDataAdapter_
     {
-        List<string> sql = new List<string>() {"SELECT * FROM T","SELECT * FROM T Where Name =" ,"UPDATE T SET Teacher = where FirstName = ", "DELETE FROM T where FirstName =  " , "insert into T Values (1,2,3,4)", "insert into T Values (1,2,3)" };
-
-
-        public void Adapter(int i,string connectionString_)
+        public DataSet Adapter(string connectionString_, string sql)
         {
             using(SqlConnection connection = new SqlConnection(connectionString_))
             {
-                SqlDataAdapter adapter = new SqlDataAdapter(connectionString_, sql[i]);
-                DataSet ds = new DataSet();
-                adapter.Fill(ds);
-                foreach (DataTable dt in ds.Tables)
-                {
-                    foreach (DataColumn column in dt.Columns)
-                    {
-                        return;
-                    }
-                    foreach (DataRow row in dt.Rows)
-                    {
-                        var cells = row.ItemArray;
-                        foreach (object cell in cells)
-                        {
-                            return;
-                        }
-
-                    }
-
-                    //Console.WriteLine($"{column.ColumnName}\t")
-                }
-
+                SqlDataAdapter adapter = new SqlDataAdapter(sql, connectionString_);// выполняем запрос
+                DataSet ds = new DataSet();// создаем объект датасет
+                adapter.Fill(ds);// заполняем датасет
+                return ds;// передаем датасет
             }
         }
     }

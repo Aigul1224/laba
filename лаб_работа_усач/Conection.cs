@@ -7,8 +7,7 @@ namespace лаб_работа_усач
 
     public class Conection
     {
-        public string stringConnection = "Server=(localdb)\\mssqllocaldb;Database=master;Trusted_Connection=True;";
-        
+        public string stringConnection = "Server=LAPTOP-HNHRN3PT;Database=Agul;Trusted_Connection=True;TrustServerCertificate=true;";
     }
 }
 
